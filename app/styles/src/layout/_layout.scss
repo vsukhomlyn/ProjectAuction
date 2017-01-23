@@ -1,0 +1,659 @@
+@import "../variables";
+@import "../mixins";
+
+// Navigation classes.
+.navigation {
+  display: flex;
+  flex-wrap: nowrap;
+  box-sizing: border-box;
+}
+
+.navigation__link {
+  color: $layout-text-color;
+  text-decoration: none;
+  margin: 0;
+  @include typo-body-1(true);
+}
+
+// Main layout class.
+.layout {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;
+  overflow-x: hidden;
+  position: relative;
+  -webkit-overflow-scrolling: touch;
+}
+
+// Utility classes for screen sizes.
+.layout.is-small-screen .layout--large-screen-only {
+  display: none;
+}
+
+.layout:not(.is-small-screen) .layout--small-screen-only {
+  display: none;
+}
+
+.layout__container {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+}
+
+
+  // Optional utility classes for formatting special blocks in this component.
+  .layout__logo {
+    height: $layout-desktop-header-height / 2;
+  }
+
+  .layout__title {
+    display: block;
+    position: relative;
+
+    @include typo-title();
+    font-weight: 400;
+    box-sizing: border-box;
+  }
+
+  .layout-spacer {
+    flex-grow: 1;
+  }
+
+
+  // Drawer.
+  .layout__drawer {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+
+    width: $layout-drawer-width;
+    height: 100%;
+    max-height: 100%;
+
+    position: absolute;
+    top: 0;
+    left: 0;
+
+    @include shadow-2dp();
+
+    box-sizing: border-box;
+    border-right: 1px solid $layout-drawer-border-color;
+    background: $layout-drawer-bg-color;
+
+    // Transform offscreen.
+    transform: translateX(-$layout-drawer-width - 10px);
+    transform-style: preserve-3d;
+    will-change: transform;
+
+    @include material-animation-default();
+    transition-property: transform;
+
+    color: $layout-text-color;
+
+    overflow: visible;
+    overflow-y: auto;
+
+    z-index: 5;
+
+    &.is-visible {
+      transform: translateX(0);
+      & ~ .layout__content.layout__content {
+        overflow: hidden;
+      }
+    }
+
+    & > * {
+      flex-shrink: 0;
+    }
+
+    & > .layout__title {
+      line-height: $layout-desktop-header-height;
+      padding-left: $layout-header-desktop-indent;
+
+      @media screen and (max-width: $layout-screen-size-threshold) {
+        line-height: $layout-mobile-header-height;
+        padding-left: $layout-header-mobile-indent;
+      }
+    }
+
+    & .navigation {
+      flex-direction: column;
+      align-items: stretch;
+      padding-top: 16px;
+
+      & .navigation__link {
+      display: block;
+      flex-shrink: 0;
+      padding: 16px $layout-header-desktop-indent;
+      margin: 0;
+      color: $layout-drawer-navigation-color;
+
+        @media screen and (max-width: $layout-screen-size-threshold) {
+          padding: 16px $layout-header-mobile-indent;
+        }
+
+        &:hover {
+          background-color: $layout-nav-color;
+        }
+
+        &--current {
+            background-color: $layout-drawer-navigation-link-active-background;
+            color: $layout-drawer-navigation-link-active-color;
+        }
+      }
+    }
+
+    @media screen and (min-width: $layout-screen-size-threshold + 1px) {
+      .layout--fixed-drawer > & {
+        transform: translateX(0);
+      }
+    }
+  }
+
+
+  // Drawer button.
+  .layout__drawer-button {
+    display: block;
+
+    position: absolute;
+    height: $layout-drawer-button-desktop-size;
+    width: $layout-drawer-button-desktop-size;
+    border: 0;
+
+    flex-shrink: 0;
+
+    overflow: hidden;
+    text-align: center;
+    cursor: pointer;
+    font-size: 26px;
+    line-height: $layout-mobile-header-height;
+    font-family: Helvetica, Arial, sans-serif;
+    margin: ($layout-mobile-header-height - $layout-drawer-button-desktop-size) 12px;
+    top: 0;
+    left: 0;
+    color: $layout-header-text-color;
+
+    z-index: 4;
+
+    .layout__header & {
+      position: absolute;
+      color: $layout-header-text-color;
+      background-color: inherit;
+
+      @media screen and (max-width: $layout-screen-size-threshold) {
+        margin: 4px;
+      }
+    }
+
+    @media screen and (max-width: $layout-screen-size-threshold) {
+      margin: 4px;
+      color: rgba(0, 0, 0, 0.5);
+    }
+
+    @media screen and (min-width: $layout-screen-size-threshold + 1px) {
+      line-height: 54px;
+
+      .layout--no-desktop-drawer-button &,
+      .layout--fixed-drawer > &,
+      .layout--no-drawer-button & {
+        display: none;
+      }
+    }
+  }
+
+  .layout__header {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    justify-content: flex-start;
+    box-sizing: border-box;
+    flex-shrink: 0;
+
+    position: relative;
+    width: 100%;
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 0;
+    border: none;
+    min-height: $layout-desktop-header-height;
+    max-height: 1000px;
+    z-index: 3;
+
+    background-color: $layout-header-bg-color;
+    color: $layout-header-text-color;
+
+    @include shadow-2dp();
+    @include material-animation-default();
+    transition-property: max-height, box-shadow;
+
+    @media screen and (max-width: $layout-screen-size-threshold) {
+      min-height: $layout-mobile-header-height;
+    }
+
+    .layout--fixed-drawer.is-upgraded:not(.is-small-screen) > & {
+      margin-left: $layout-drawer-width;
+      width: calc(100% - #{$layout-drawer-width});
+    }
+
+    @media screen and (min-width: $layout-screen-size-threshold + 1px) {
+      .layout--fixed-drawer > & {
+        .layout__header-row {
+          padding-left: 40px;
+        }
+      }
+    }
+
+    & > .layout-icon {
+      position: absolute;
+      left: $layout-header-desktop-indent;
+      top: ($layout-desktop-header-height - $layout-header-icon-size) / 2;
+      height: $layout-header-icon-size;
+      width: $layout-header-icon-size;
+      overflow: hidden;
+      z-index: 3;
+      display: block;
+
+      @media screen and (max-width: $layout-screen-size-threshold) {
+        left: $layout-header-mobile-indent;
+        top: ($layout-mobile-header-height - $layout-header-icon-size) / 2;
+      }
+    }
+
+    .layout.has-drawer & > .layout-icon {
+      display: none;
+    }
+
+    &.is-compact {
+      max-height: $layout-desktop-header-height;
+
+      @media screen and (max-width: $layout-screen-size-threshold) {
+        max-height: $layout-mobile-header-height;
+      }
+    }
+
+    &.is-compact.has-tabs {
+      height: $layout-desktop-header-height + $layout-tab-bar-height;
+
+      @media screen and (max-width: $layout-screen-size-threshold) {
+        min-height: $layout-mobile-header-height + $layout-tab-bar-height;
+      }
+    }
+
+    @media screen and (max-width: $layout-screen-size-threshold) {
+      & {
+        display: none;
+      }
+
+      .layout--fixed-header > & {
+        display: flex;
+      }
+    }
+  }
+
+    .layout__header--transparent.layout__header--transparent {
+      background-color: transparent;
+      box-shadow: none;
+    }
+
+    .layout__header--seamed {
+      box-shadow: none;
+    }
+
+    .layout__header--scroll {
+      box-shadow: none;
+    }
+
+    .layout__header--waterfall {
+      box-shadow: none;
+      overflow: hidden;
+
+      &.is-casting-shadow {
+        @include shadow-2dp();
+      }
+
+      &.layout__header--waterfall-hide-top {
+        justify-content: flex-end;
+      }
+    }
+
+    .layout__header-row {
+      display: flex;
+      flex-direction: row;
+      flex-wrap: nowrap;
+      flex-shrink: 0;
+      box-sizing: border-box;
+      align-self: stretch;
+      align-items: center;
+      height: $layout-header-desktop-row-height;
+      margin: 0;
+      padding: 0 $layout-header-desktop-indent 0 $layout-header-desktop-baseline;
+
+      .layout--no-drawer-button & {
+        padding-left: $layout-header-desktop-indent;
+      }
+
+      @media screen and (min-width: $layout-screen-size-threshold + 1px) {
+        .layout--no-desktop-drawer-button & {
+          padding-left: $layout-header-desktop-indent;
+        }
+      }
+
+      @media screen and (max-width: $layout-screen-size-threshold) {
+        height: $layout-header-mobile-row-height;
+        padding: 0 $layout-header-mobile-indent 0 $layout-header-mobile-baseline;
+
+        .layout--no-drawer-button & {
+          padding-left: $layout-header-mobile-indent;
+        }
+      }
+
+      & > * {
+        flex-shrink: 0;
+      }
+
+      .layout__header--scroll & {
+        width: 100%;
+      }
+
+      & .navigation {
+        margin: 0;
+        padding: 0;
+        height: $layout-header-desktop-row-height;
+        flex-direction: row;
+        align-items: center;
+
+        @media screen and (max-width: $layout-screen-size-threshold) {
+          height: $layout-header-mobile-row-height;
+        }
+      }
+
+
+      & .navigation__link-wrapper {
+        line-height: $layout-header-desktop-row-height;
+
+        &:not(:last-of-type){
+
+          & .navigation__link {
+            border-right-style: solid;
+            border-right-width: 1px;
+          }
+        }
+      }
+
+      & .navigation__link {
+        color: $layout-header-text-color;
+        padding: 0 24px;
+
+        &:hover {
+          color: $layout-header-tab-text-color;
+          border-color: $layout-header-text-color;
+        }
+
+        @media screen and (max-width: $layout-screen-size-threshold) {
+          line-height: $layout-header-mobile-row-height;
+          padding: 0 $layout-header-mobile-indent;
+        }
+      }
+    }
+
+  // Obfuscator.
+  .layout__obfuscator {
+    background-color: transparent;
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    z-index: 4;
+    visibility: hidden;
+    transition-property: background-color;
+    @include material-animation-default();
+
+    &.is-visible {
+      background-color: rgba(0, 0, 0, 0.5);
+      visibility: visible;
+    }
+
+    @supports (pointer-events: auto) {
+      background-color: rgba(0, 0, 0, 0.5);
+      opacity: 0;
+      transition-property: opacity;
+      visibility: visible;
+      pointer-events: none;
+      &.is-visible {
+        pointer-events: auto;
+        opacity: 1;
+      }
+    }
+  }
+
+
+  // Content.
+  .layout__content {
+    // Fix IE10 bug.
+    -ms-flex: 0 1 auto;
+
+    position: relative;
+    display: inline-block;
+    overflow-y: auto;
+    overflow-x: hidden;
+    flex-grow: 1;
+    z-index: 1;
+    -webkit-overflow-scrolling: touch;
+
+    .layout--fixed-drawer > & {
+      margin-left: $layout-drawer-width;
+    }
+
+    .layout__container.has-scrolling-header & {
+      overflow: visible;
+    }
+
+    @media screen and (max-width: $layout-screen-size-threshold) {
+      .layout--fixed-drawer > & {
+        margin-left: 0;
+      }
+
+      .layout__container.has-scrolling-header & {
+        overflow-y: auto;
+        overflow-x: hidden;
+      }
+    }
+  }
+
+  // Tabs.
+  .layout__tab-bar {
+    height: $layout-tab-bar-height * 2;
+    margin: 0;
+    width: calc(100% -
+        #{(($layout-header-desktop-baseline - $layout-tab-desktop-padding) * 2)});
+    padding: 0 0 0
+        ($layout-header-desktop-baseline - $layout-tab-desktop-padding);
+    display: flex;
+    background-color: $layout-header-bg-color;
+    overflow-y: hidden;
+    overflow-x: scroll;
+
+    &::-webkit-scrollbar {
+      display: none;
+    }
+
+    .layout--no-drawer-button & {
+      padding-left: $layout-header-desktop-indent - $layout-tab-desktop-padding;
+      width: calc(100% -
+          #{(($layout-header-desktop-indent - $layout-tab-desktop-padding) * 2)});
+    }
+
+    @media screen and (min-width: $layout-screen-size-threshold + 1px) {
+      .layout--no-desktop-drawer-button & {
+        padding-left: $layout-header-desktop-indent - $layout-tab-desktop-padding;
+        width: calc(100% -
+            #{(($layout-header-desktop-indent - $layout-tab-desktop-padding) * 2)});
+      }
+    }
+
+    @media screen and (max-width: $layout-screen-size-threshold) {
+      width: calc(100% -
+          #{($layout-header-mobile-baseline - $layout-tab-mobile-padding)});
+      padding: 0 0 0
+          ($layout-header-mobile-baseline - $layout-tab-mobile-padding);
+
+      .layout--no-drawer-button & {
+        width: calc(100% -
+            #{(($layout-header-mobile-indent - $layout-tab-mobile-padding) * 2)});
+        padding-left: $layout-header-mobile-indent - $layout-tab-mobile-padding;
+      }
+    }
+
+    .layout--fixed-tabs & {
+      padding: 0;
+      overflow: hidden;
+      width: 100%;
+    }
+  }
+
+  .layout__tab-bar-container {
+    position: relative;
+    height: $layout-tab-bar-height;
+    width: 100%;
+    border: none;
+    margin: 0;
+    z-index: 2;
+    flex-grow: 0;
+    flex-shrink: 0;
+    overflow: hidden;
+
+    .layout__container > & {
+      position: absolute;
+      top: 0;
+      left: 0;
+    }
+  }
+
+  .layout__tab-bar-button {
+    display: inline-block;
+    position: absolute;
+    top: 0;
+    height: $layout-tab-bar-height;
+    width: $layout-header-desktop-baseline - $layout-tab-desktop-padding;
+    z-index: 4;
+    text-align: center;
+    background-color: $layout-header-bg-color;
+    color: transparent;
+    cursor: pointer;
+    user-select: none;
+
+    .layout--no-desktop-drawer-button &,
+    .layout--no-drawer-button & {
+      width: $layout-header-desktop-indent - $layout-tab-desktop-padding;
+
+      & .material-icons {
+        position: relative;
+        left: ($layout-header-desktop-indent - $layout-tab-desktop-padding - 24px) / 2;
+      }
+    }
+
+    @media screen and (max-width: $layout-screen-size-threshold) {
+      width: $layout-header-mobile-baseline - $layout-tab-mobile-padding;
+    }
+
+    .layout--fixed-tabs & {
+      display: none;
+    }
+
+    & .material-icons {
+      line-height: $layout-tab-bar-height;
+    }
+
+    &.is-active {
+      color: $layout-header-text-color;
+    }
+  }
+
+  .layout__tab-bar-left-button {
+    left: 0;
+  }
+
+  .layout__tab-bar-right-button {
+    right: 0;
+  }
+
+  .layout__tab {
+    margin: 0;
+    border: none;
+    padding: 0 $layout-tab-desktop-padding 0 $layout-tab-desktop-padding;
+
+    float: left;
+    position: relative;
+    display: block;
+    flex-grow: 0;
+    flex-shrink: 0;
+
+    text-decoration: none;
+    height: $layout-tab-bar-height;
+    line-height: $layout-tab-bar-height;
+
+    text-align: center;
+    font-weight: 500;
+    font-size: $layout-tab-font-size;
+    text-transform: uppercase;
+
+    color: $layout-header-tab-text-color;
+    overflow: hidden;
+
+    @media screen and (max-width: $layout-screen-size-threshold) {
+      padding: 0 $layout-tab-mobile-padding 0 $layout-tab-mobile-padding;
+    }
+
+    .layout--fixed-tabs & {
+      float: none;
+      flex-grow: 1;
+      padding: 0;
+    }
+
+    .layout.is-upgraded &.is-active {
+      color: $layout-header-text-color;
+    }
+
+    .layout.is-upgraded &.is-active::after {
+      height: $layout-tab-highlight-thickness;
+      width: 100%;
+      display: block;
+      content: " ";
+      bottom: 0;
+      left: 0;
+      position: absolute;
+      background: $layout-header-tab-highlight;
+      animation: border-expand 0.2s cubic-bezier(0.4, 0.0, 0.4, 1) 0.01s alternate forwards;
+      transition: all 1s cubic-bezier(0.4, 0.0, 1, 1);
+    }
+
+    & .layout__tab-ripple-container {
+      display: block;
+      position: absolute;
+      height: 100%;
+      width: 100%;
+      left: 0;
+      top: 0;
+      z-index: 1;
+      overflow: hidden;
+
+      & .ripple {
+        background-color: $layout-header-text-color;
+      }
+    }
+  }
+
+  .layout__tab-panel {
+    display: block;
+
+    .layout.is-upgraded & {
+      display: none;
+    }
+
+    .layout.is-upgraded &.is-active {
+      display: block;
+    }
+  }

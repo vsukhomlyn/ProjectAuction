@@ -1,0 +1,57 @@
+@import "../variables";
+
+.slides__prev,
+.slides__next {
+  display: none;
+}
+
+@media screen and (min-width: $grid-desktop-breakpoint) {
+  .slides {
+    position: relative;
+    height: $slides-height;
+  }
+
+  .slides__img {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    z-index: 1;
+    transition: opacity 1s;
+    background: no-repeat 50% 50% / contain;
+
+    &:nth-of-type(1) {
+      background-image: url($image_path + "/slides/1.jpg");
+    }
+    &:nth-of-type(2) {
+      background-image: url($image_path + "/slides/2.jpg");
+    }
+    &:nth-of-type(3) {
+      background-image: url($image_path + "/slides/3.jpg");
+    }
+  }
+
+  .slides__img--showing {
+    opacity: 1;
+    z-index: 2;
+  }
+
+  .slides__prev,
+  .slides__next {
+    display: block;
+    position: absolute;
+    z-index: 3;
+    top: $slides-height/2 - $button-icon-size;
+    color: $button-secondary-color-alt;
+  }
+
+  .slides__prev {
+    left: 40px;
+  }
+
+  .slides__next {
+    right: 40px;
+  }
+}
+
+

@@ -1,0 +1,57 @@
+@import "src/components";
+
+html, body {
+  font-family: 'Roboto', 'Helvetica', sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+.auction .layout__drawer-button {
+  background: url($image_path + "/ic_menu_white_24px.svg") center no-repeat;
+}
+
+
+.products {
+  padding: 2%;
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+
+  & .product {
+    margin: 5px 0;
+    width: 96%;
+
+    @media screen and (min-width: $grid-tablet-breakpoint) {
+      margin: 5px 2%;
+      width: 46%;
+    }
+
+    @media screen and (min-width: $grid-desktop-breakpoint) {
+      margin: 5px;
+      width: 290px;
+    }
+  }
+
+  & .mdl-button {
+    background-color: unquote("rgb(#{$palette-orange-700})");
+    color: $button-secondary-color-alt;
+
+    &:hover {
+      background-color: unquote("rgb(#{$palette-orange-300})");
+    }
+  }
+}
+
+.product__timeLeft {
+  line-height: $button-height;
+  margin-left: 10px;
+}
+
+.mdl-card__title-link {
+  text-decoration: none;
+  color:unquote("rgb(#{$palette-blue-700})");
+
+  &:hover {
+    text-decoration: underline;
+  }
+}
