@@ -49,9 +49,32 @@ html, body {
 
 .mdl-card__title-link {
   text-decoration: none;
-  color:unquote("rgb(#{$palette-blue-700})");
 
   &:hover {
     text-decoration: underline;
+  }
+}
+
+.pagination {
+  text-align: center;
+  padding-bottom: 2%;
+
+  & .pagination__item {
+    padding: 10px;
+    font-size: $card-font-size;
+    text-decoration: none;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+
+  & .pagination__item--active {
+    color: $button-fab-color-alt;
+
+    &:hover {
+      text-decoration: none;
+      cursor: default;
+    }
   }
 }

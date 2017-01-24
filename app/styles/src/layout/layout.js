@@ -72,6 +72,7 @@
     DRAWER: 'layout__drawer',
     CONTENT: 'layout__content',
     DRAWER_BTN: 'layout__drawer-button',
+    NAV_LINK: 'navigation__link',
 
     // ICON: 'material-icons',
 
@@ -192,7 +193,7 @@
       }
     }
 
-    this.toggleDrawer();
+    this.toggleDrawer(evt);
   };
 
   /**
@@ -243,7 +244,14 @@
   *
   * @public
   */
-  MaterialLayout.prototype.toggleDrawer = function() {
+  MaterialLayout.prototype.toggleDrawer = function(evt) {
+    if (evt.target.classList.contains(this.CssClasses_.NAV_LINK)) {
+      var drawerLinks = Array.prototype.slice.call(this.drawer_.querySelectorAll('.' + this.CssClasses_.NAV_LINK));
+      drawerLinks.forEach((function (drawerLink) {
+        drawerLink.classList.remove(this.CssClasses_.NAV_LINK + '--current');
+      }).bind(this));
+      evt.target.classList.add(this.CssClasses_.NAV_LINK + '--current');
+    }
     var drawerButton = this.element_.querySelector('.' + this.CssClasses_.DRAWER_BTN);
     this.drawer_.classList.toggle(this.CssClasses_.IS_DRAWER_OPEN);
     this.obfuscator_.classList.toggle(this.CssClasses_.IS_DRAWER_OPEN);
@@ -402,6 +410,7 @@
         this.obfuscator_ = obfuscator;
 
         this.drawer_.addEventListener('keydown', this.keyboardEventHandler_.bind(this));
+        this.drawer_.addEventListener('click', this.drawerToggleHandler_.bind(this));
         this.drawer_.setAttribute('aria-hidden', 'true');
       }
 

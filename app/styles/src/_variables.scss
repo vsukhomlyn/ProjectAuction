@@ -78,7 +78,7 @@ $color-accent-contrast: $color-dark-contrast !default;
 // and text-color-secondary-inverse.
 
 $text-color-primary: unquote("rgba(#{$color-black}, 0.87)") !default;
-$text-link-color: unquote("rgb(#{$color-accent})") !default;
+$text-link-color: unquote("rgb(#{$palette-blue-700})") !default;
 
 // Define whether to target elements directly for typographic enhancements.
 // Turning this off means you need to use mdl-* classes more often.
@@ -403,7 +403,7 @@ $checkbox-ripple-size: $checkbox-label-height * 1.5;
 
 /* Card dimensions */
 $card-width: 330px !default;
-$card-height: 200px !default;
+$card-height: 150px !default;
 $card-font-size: 16px !default;
 $card-title-font-size: 24px !default;
 $card-subtitle-font-size: 14px !default;

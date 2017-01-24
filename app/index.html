@@ -50,18 +50,18 @@
           <div class="layout-spacer"></div>
           <nav class="navigation">
             <span class="navigation__link-wrapper">
-              <a class="navigation__link" href="#">Main</a>
+              <a class="navigation__link" href="#/page1">Main</a>
             </span>
             <span class="navigation__link-wrapper">
-              <a class="navigation__link" href="#">Gallery</a>
+              <a class="navigation__link" href="#gallery">Gallery</a>
             </span>
             <span id="menu-contacts" class="navigation__link-wrapper">
-              <a class="navigation__link" href="#">Contacts </a>
+              <a class="navigation__link" href="#contacts">Contacts </a>
             </span>
             <ul class="mdl-menu mdl-js-menu mdl-js-ripple-effect" for="menu-contacts">
-              <li class="mdl-menu__item">About</li>
-              <li class="mdl-menu__item">Address</li>
-              <li class="mdl-menu__item">Map</li>
+              <a class="mdl-menu__item" href="#about">About</a>
+              <a class="mdl-menu__item" href="#address">Address</a>
+              <a class="mdl-menu__item" href="#map">Map</a>
             </ul>
           </nav>
         </div>
@@ -69,9 +69,10 @@
       <div class="layout__drawer ">
         <span class="layout__title">Categories</span>
         <nav class="navigation">
-          <a class="navigation__link" href="#">Fruits</a>
-          <a class="navigation__link" href="#">Vegetables</a>
-          <a class="navigation__link" href="#">Other</a>
+          <a class="navigation__link" href="#/fruits/page1">Fruits</a>
+          <a class="navigation__link" href="#/vegetables/page1">Vegetables</a>
+          <a class="navigation__link" href="#/mushrooms/page1">Mushrooms</a>
+          <a class="navigation__link" href="#/other/page1">Other</a>
         </nav>
       </div>
       <main class="layout__content">
@@ -83,6 +84,10 @@
 
         <section class="products">
           <!--products will be here -->
+        </section>
+
+        <section class="pagination">
+          <!--pagination will be here -->
         </section>
 
         <footer class="footer">
@@ -155,6 +160,8 @@
     <!-- end shims -->
 
     <!-- build:js scripts/main.min.js -->
+    <script src="./scripts/grapnel.js"></script>
+    <script src="./scripts/pagination.js"></script>
     <script src="./scripts/products-handler.js"></script>
     <script src="./styles/src/mdlComponentHandler.js"></script>
     <script src="./styles/src/button/button.js"></script>
@@ -166,13 +173,13 @@
     <!-- endbuild -->
 
     <!-- Google Analytics: change UA-XXXXX-X to be your site's ID -->
-    <script>
-      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-      })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-      ga('create', 'UA-XXXXX-X', 'auto');
-      ga('send', 'pageview');
-    </script>
+    <!--<script>-->
+      <!--(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){-->
+      <!--(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),-->
+      <!--m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)-->
+      <!--})(window,document,'script','//www.google-analytics.com/analytics.js','ga');-->
+      <!--ga('create', 'UA-XXXXX-X', 'auto');-->
+      <!--ga('send', 'pageview');-->
+    <!--</script>-->
   </body>
 </html>

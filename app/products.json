@@ -5,7 +5,8 @@
     "description": "Fresh, very tasty meal from South America",
     "price": "3.00",
     "img": "images/products/plum.jpg",
-    "timeEnd": "2017-01-23T21:30:05.808Z"
+    "timeEnd": "2017-01-29T21:30:05.808Z",
+    "category": "fruits"
   },
   {
     "id": "9",
@@ -13,7 +14,8 @@
     "description": "Fresh, very tasty meal from South America",
     "price": "4.50",
     "img": "images/products/graphics.jpg",
-    "timeEnd": "2017-01-26T21:30:05.808Z"
+    "timeEnd": "2017-01-26T21:30:05.808Z",
+    "category": "fruits"
   },
   {
     "id": "3",
@@ -21,7 +23,8 @@
     "description": "Fresh, very tasty meal from South America",
     "price": "4.00",
     "img": "images/products/pear.jpg",
-    "timeEnd": "2017-01-27T23:30:05.808Z"
+    "timeEnd": "2017-01-27T23:30:05.808Z",
+    "category": "fruits"
   },
   {
     "id": "4",
@@ -29,7 +32,8 @@
     "description": "Fresh, very tasty meal from South America",
     "price": "2.00",
     "img": "images/products/cherry.jpg",
-    "timeEnd": "2017-01-25T21:30:05.808Z"
+    "timeEnd": "2017-01-30T21:30:05.808Z",
+    "category": "fruits"
   },
   {
     "id": "5",
@@ -37,7 +41,8 @@
     "description": "Fresh, very tasty meal from South America",
     "price": "1.50",
     "img": "images/products/apple2.jpg",
-    "timeEnd": "2017-01-26T21:30:05.808Z"
+    "timeEnd": "2017-01-27T21:30:05.808Z",
+    "category": "fruits"
   },
   {
     "id": "6",
@@ -45,7 +50,8 @@
     "description": "Fresh, very tasty meal from South America",
     "price": "6.00",
     "img": "images/products/carambola.jpg",
-    "timeEnd": "2017-01-29T21:30:05.808Z"
+    "timeEnd": "2017-01-29T21:30:05.808Z",
+    "category": "fruits"
   },
   {
     "id": "1",
@@ -53,7 +59,8 @@
     "description": "Fresh, very tasty meal from South America",
     "price": "1.00",
     "img": "images/products/apple.jpg",
-    "timeEnd": "2017-01-28T21:30:05.808Z"
+    "timeEnd": "2017-01-28T21:30:05.808Z",
+    "category": "fruits"
   },
   {
     "id": "7",
@@ -61,7 +68,8 @@
     "description": "Fresh, very tasty meal from South America",
     "price": "0.50",
     "img": "images/products/carrot.jpg",
-    "timeEnd": "2017-01-26T21:30:05.808Z"
+    "timeEnd": "2017-01-26T21:30:05.808Z",
+    "category": "vegetables"
   },
   {
     "id": "8",
@@ -69,7 +77,8 @@
     "description": "Fresh, very tasty meal from South America",
     "price": "7.00",
     "img": "images/products/fruit-de-la-passion.jpg",
-    "timeEnd": "2017-01-26T21:30:05.808Z"
+    "timeEnd": "2017-01-26T21:30:05.808Z",
+    "category": "other"
   },
   {
     "id": "10",
@@ -77,7 +86,8 @@
     "description": "Fresh, very tasty meal from South America",
     "price": "4.00",
     "img": "images/products/peach.jpg",
-    "timeEnd": "2017-01-26T21:30:05.808Z"
+    "timeEnd": "2017-01-26T21:30:05.808Z",
+    "category": "fruits"
   },
   {
     "id": "11",
@@ -85,7 +95,8 @@
     "description": "Fresh, very tasty meal from South America",
     "price": "2.00",
     "img": "images/products/tomato.jpg",
-    "timeEnd": "2017-01-26T21:30:05.808Z"
+    "timeEnd": "2017-01-26T21:30:05.808Z",
+    "category": "vegetables"
   },
   {
     "id": "12",
@@ -93,6 +104,124 @@
     "description": "Fresh, very tasty meal from South America",
     "price": "3.00",
     "img": "images/products/pepper.png",
-    "timeEnd": "2017-01-29T21:30:05.808Z"
+    "timeEnd": "2017-01-29T21:30:05.808Z",
+    "category": "vegetables"
+  },
+  {
+    "id": "13",
+    "name": "Plum",
+    "description": "Fresh, very tasty meal from South America",
+    "price": "3.00",
+    "img": "images/products/plum.jpg",
+    "timeEnd": "2017-01-29T21:30:05.808Z",
+    "category": "fruits"
+  },
+  {
+    "id": "14",
+    "name": "Graphics",
+    "description": "Fresh, very tasty meal from South America",
+    "price": "4.50",
+    "img": "images/products/graphics.jpg",
+    "timeEnd": "2017-01-26T21:30:05.808Z",
+    "category": "fruits"
+  },
+  {
+    "id": "15",
+    "name": "Pear",
+    "description": "Fresh, very tasty meal from South America",
+    "price": "4.00",
+    "img": "images/products/pear.jpg",
+    "timeEnd": "2017-01-27T23:30:05.808Z",
+    "category": "fruits"
+  },
+  {
+    "id": "16",
+    "name": "Cherry",
+    "description": "Fresh, very tasty meal from South America",
+    "price": "2.00",
+    "img": "images/products/cherry.jpg",
+    "timeEnd": "2017-01-30T21:30:05.808Z",
+    "category": "fruits"
+  },
+  {
+    "id": "17",
+    "name": "Apple",
+    "description": "Fresh, very tasty meal from South America",
+    "price": "1.50",
+    "img": "images/products/apple2.jpg",
+    "timeEnd": "2017-01-27T21:30:05.808Z",
+    "category": "fruits"
+  },
+  {
+    "id": "19",
+    "name": "Apple",
+    "description": "Fresh, very tasty meal from South America",
+    "price": "1.00",
+    "img": "images/products/apple.jpg",
+    "timeEnd": "2017-01-28T21:30:05.808Z",
+    "category": "fruits"
+  },
+  {
+    "id": "20",
+    "name": "Carrot",
+    "description": "Fresh, very tasty meal from South America",
+    "price": "0.50",
+    "img": "images/products/carrot.jpg",
+    "timeEnd": "2017-01-26T21:30:05.808Z",
+    "category": "vegetables"
+  },
+  {
+    "id": "21",
+    "name": "La-passion",
+    "description": "Fresh, very tasty meal from South America",
+    "price": "7.00",
+    "img": "images/products/fruit-de-la-passion.jpg",
+    "timeEnd": "2017-01-26T21:30:05.808Z",
+    "category": "other"
+  },
+  {
+    "id": "22",
+    "name": "Peach",
+    "description": "Fresh, very tasty meal from South America",
+    "price": "4.00",
+    "img": "images/products/peach.jpg",
+    "timeEnd": "2017-01-26T21:30:05.808Z",
+    "category": "fruits"
+  },
+  {
+    "id": "18",
+    "name": "Carambola",
+    "description": "Fresh, very tasty meal from South America",
+    "price": "6.00",
+    "img": "images/products/carambola.jpg",
+    "timeEnd": "2017-01-29T21:30:05.808Z",
+    "category": "fruits"
+  },
+  {
+    "id": "23",
+    "name": "Tomato",
+    "description": "Fresh, very tasty meal from South America",
+    "price": "2.00",
+    "img": "images/products/tomato.jpg",
+    "timeEnd": "2017-01-26T21:30:05.808Z",
+    "category": "vegetables"
+  },
+  {
+    "id": "24",
+    "name": "Pepper",
+    "description": "Fresh, very tasty meal from South America",
+    "price": "3.00",
+    "img": "images/products/pepper.png",
+    "timeEnd": "2017-01-29T21:30:05.808Z",
+    "category": "vegetables"
+  },
+  {
+    "id": "25",
+    "name": "Peach",
+    "description": "Fresh, very tasty meal from South America",
+    "price": "4.00",
+    "img": "images/products/peach.jpg",
+    "timeEnd": "2017-01-26T21:30:05.808Z",
+    "category": "fruits"
   }
 ]

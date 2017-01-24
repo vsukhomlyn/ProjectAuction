@@ -1,28 +1,46 @@
 
 class ProductsHandler {
 
-  getProducts() {
+  getProducts(page, category) {
+    if (Products.items) return Products.displayProducts(Products.pagePaginate(Products.items, page, category));
+
     fetch('./products.json')
       .then(function(response) {
         if (response.headers.get('Content-Type') == 'application/json' && response.status == 200) {
           return response.json();
         }
       })
-      .then((products) => this.checkProducts(products))
-      .then((products) => this.displayProducts(products))
+      .then((products) => this.checkProducts_(products))
+      .then((items) => this.pagePaginate (items, page, category))
+      .then((filterItems) => this.displayProducts (filterItems))
       .catch(this.displayNothing);
   }
 
-  checkProducts (oldProducts) {
-    const newProducts = [];
-    oldProducts.forEach((product) => {
-      if (Object.keys(product).length > 0 && this.timeLeft(product.timeEnd)) newProducts.push(product);
-    });
-    if (newProducts.length == 0) return this.displayNothing();
-    return newProducts;
+  checkProducts_ (products) {
+    const items = products.filter(product => Object.keys(product).length > 0 && this.timeLeft_(product.timeEnd));
+    if (items.length == 0) return this.displayNothing();
+    return this.items = items;
+  }
+
+  pagePaginate(items, page, category) {
+    let filterItems = items.slice();
+    if (category) {
+      filterItems = items.filter(item => item.category == category);
+      if (filterItems.length == 0) {
+        this.displayNothing(category);
+        return filterItems;
+      }
+    }
+    const pagesQuantity = Math.ceil(filterItems.length / ItemsPagination.itemsPerPage);
+    ItemsPagination.init(pagesQuantity, page, category);
+    let start = 0;
+    if (page) start = (Number(page.substr(4)) - 1) * ItemsPagination.itemsPerPage;
+    return filterItems.slice(start, start + ItemsPagination.itemsPerPage);
   }
 
   displayProducts (products) {
+    if (products.length == 0) return;
+
     function template(strings, ...interpolatedValues) {
       return strings.reduce((total, current, index) => {
         total += current;
@@ -32,6 +50,7 @@ class ProductsHandler {
         return total;
       }, '');
     }
+
     document.querySelector('.products').innerHTML = products.map(product => template`       
         <div class="product mdl-card mdl-shadow--2dp">
           <div class="mdl-card__media">
@@ -50,14 +69,14 @@ class ProductsHandler {
             <a class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--orange" href="#${product.id}">
               Place bid
             </a>
-            <div class="product__timeLeft">${this.timeLeft(product.timeEnd)} left</div>
+            <div class="product__timeLeft">${this.timeLeft_(product.timeEnd)} left</div>
           </div>  
         </div>
       `
     ).join('');
   }
 
-  timeLeft(timeEndStr) {
+  timeLeft_(timeEndStr) {
     const timeEnd = new Date(timeEndStr);
     let left = new Date(timeEnd - Date.now());
     if (left < 0) return false;
@@ -66,14 +85,34 @@ class ProductsHandler {
     return ( days + left.getUTCHours() + "h " + left.getUTCMinutes() + "m");
   }
 
-  displayNothing () {
+  displayNothing (category) {
     const information = document.createElement('h2');
-    information.innerText = 'Products for sale currently not available!';
-    document.querySelector('.products').appendChild(information);
+    if (category) {
+      information.innerText = 'There are no products in category ' + category + '.';
+    } else {
+      information.innerText = 'Products for sale currently not available!';
+    }
+    const productsContainer = document.querySelector('.products');
+    productsContainer.innerHTML = '';
+    productsContainer.appendChild(information);
+    document.querySelector('.pagination').innerHTML = '';
   }
 
 }
 
+const ItemsPagination = new Pagination (document.querySelector('.pagination'), {
+  page: 1,  // selected page
+  step: 2,   // pages before and after current
+  itemsPerPage: 8 // items per page
+});
 const Products = new ProductsHandler();
-Products.getProducts();
+const Router = new Grapnel();
+
+Router.get('', () => Products.getProducts());
+Router.get('/:page', (req) => Products.getProducts(req.params.page));
+Router.get('/:category/:page', (req) => Products.getProducts(req.params.page, req.params.category));
+
+
+
+
 
