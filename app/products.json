@@ -9,6 +9,15 @@
     "category": "fruits"
   },
   {
+    "id": "29",
+    "name": "Pepper",
+    "description": "Fresh, very tasty meal from South America",
+    "price": "3.00",
+    "img": "images/products/pepper.png",
+    "timeEnd": "2017-01-29T21:30:05.808Z",
+    "category": "vegetables"
+  },
+  {
     "id": "9",
     "name": "Graphics",
     "description": "Fresh, very tasty meal from South America",

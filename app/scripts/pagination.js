@@ -34,6 +34,7 @@ class Pagination {
       this.add(this.page - this.step, this.page + this.step + 1);
       this.last();
     }
+    this.breadcrumb();
     this.insert();
   }
 
@@ -73,5 +74,16 @@ class Pagination {
       this.page = Number(event.target.innerHTML);
       this.construct();
     }
+  }
+
+  breadcrumb () {
+   document.querySelector('.breadcrumbs').innerHTML = '<a href="#">main</a> / <a href="#/' +
+      this.category.substr(1) + '/page1">' + this.category.substr(1) + '</a>';
+  }
+
+  productBreadcrumb (product) {
+    document.querySelector('.breadcrumbs').innerHTML = '<a href="#">main</a> / <a href="#/' +
+      product.category + '/page1">' + product.category + '</a> / <a href="#/' +
+      product.category + '/id' + product.id + '">' + product.name + '</a>';
   }
 }
