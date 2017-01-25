@@ -41,17 +41,21 @@ html, body {
     }
   }
 
-  & .product--detail {
-    flex-direction: row;
-    width: 100%;
-
-    & .mdl-card__detail {
+  @media screen and (min-width: $grid-desktop-breakpoint) {
+    & .product--detail {
+      flex-direction: row;
       width: 100%;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
+
+      & .mdl-card__detail {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+      }
     }
   }
+
+
 }
 
 .product__timeLeft {
@@ -94,4 +98,9 @@ html, body {
 
 .breadcrumbs {
   padding: 2% 4% 0;
+}
+
+.map {
+  display: none;
+  padding: 2%;
 }

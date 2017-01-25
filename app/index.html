@@ -40,6 +40,25 @@
 
     <!-- Fonts -->
     <link href='https://fonts.googleapis.com/css?family=Roboto:regular,bold,italic,thin,light,bolditalic,black,medium&amp;lang=en' rel='stylesheet' type='text/css'>
+
+    <!-- IE Compatibility shims -->
+    <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.2/html5shiv.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/babel-polyfill/6.22.0/polyfill.min.js"></script>
+    <![endif]-->
+
+    <!--[if IE]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/es5-shim/4.5.9/es5-shim.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/es-class/2.0.0/es-class.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/classlist/2014.01.31/classList.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/selectivizr/1.0.2/selectivizr-min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/flexboxgrid/6.3.1/flexboxgrid.min.css">
+    <![endif]-->
+
+    <!--<script src="//cdnjs.cloudflare.com/ajax/libs/flexie/1.0.3/flexie.min.js"></script>-->
+    <!--<script src="//cdnjs.cloudflare.com/ajax/libs/flexibility/2.0.1/flexibility.js"></script>-->
+
+    <!-- end shims -->
   </head>
   <body class="auction">
     <div class="layout js-layout layout--fixed-header">
@@ -83,6 +102,10 @@
         </section>
 
         <section class="breadcrumbs">
+        </section>
+
+        <section class="map">
+          <script type="text/javascript" charset="utf-8" async src="https://api-maps.yandex.ru/services/constructor/1.0/js/?sid=hoR8jnFG8RTQd0O4dQfNtcDs8tKG7h95&amp;width=100%25&amp;height=400&amp;lang=ru_RU&amp;sourceType=constructor&amp;scroll=true"></script>
         </section>
 
         <section class="products">
@@ -148,20 +171,6 @@
       </main>
     </div>
 
-    <!-- IE Compatibility shims -->
-    <!--[if lt IE 9]>
-    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.2/html5shiv.min.js"></script>
-    <![endif]-->
-
-    <!--[if IE]>
-    <script src="//cdnjs.cloudflare.com/ajax/libs/es5-shim/4.5.9/es5-shim.min.js"></script>
-    <script src="//cdnjs.cloudflare.com/ajax/libs/es-class/2.0.0/es-class.js"></script>
-    <script src="//cdnjs.cloudflare.com/ajax/libs/classlist/2014.01.31/classList.min.js"></script>
-    <script src="//cdnjs.cloudflare.com/ajax/libs/selectivizr/1.0.2/selectivizr-min.js"></script>
-    <script src="//cdnjs.cloudflare.com/ajax/libs/flexie/1.0.3/flexie.min.js"></script>
-    <![endif]-->
-    <!-- end shims -->
-
     <script src="//cdnjs.cloudflare.com/ajax/libs/fetch/2.0.2/fetch.min.js"></script>
     <!-- build:js scripts/main.min.js -->
     <script src="./scripts/grapnel.js"></script>
@@ -175,7 +184,8 @@
     <script src="./styles/src/ripple/ripple.js"></script>
     <script src="scripts/main.js"></script>
     <!-- endbuild -->
-
+    <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&callback=initMap"
+            async defer></script>
      Google Analytics: change UA-XXXXX-X to be your site's ID
     <script>
       (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){

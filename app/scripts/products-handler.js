@@ -52,6 +52,7 @@ class ProductsHandler {
     if (!(products instanceof Array)) return this.displayProduct (products);
     if (products.length == 0) return;
 
+    document.querySelector('.map').style.display = 'none';
     document.querySelector('.products').innerHTML = products.map(product => this.template_`       
         <div class="product mdl-card mdl-shadow--2dp">
           <div class="mdl-card__media">
@@ -79,6 +80,7 @@ class ProductsHandler {
 
   displayProduct (product) {
     document.querySelector('.pagination').innerHTML = '';
+    document.querySelector('.map').style.display = 'none';
     ItemsPagination.productBreadcrumb(product);
 
     document.querySelector('.products').innerHTML = this.template_`       
@@ -153,11 +155,14 @@ Router.get('/:page', (req) => Products.getProducts(req.params.page));
 Router.get('/:category/:page', (req) => {
   if (req.params.page.substr(0,4) == 'page') Products.getProducts(req.params.page, req.params.category)
 });
-Router.get('/:category/id:id', (req) => {
-  Products.getProducts(undefined, undefined, req.params.id)
+Router.get('/:category/id:id', (req) => Products.getProducts(undefined, undefined, req.params.id));
+
+Router.get('map', () => {
+  document.querySelector('.pagination').innerHTML = '';
+  document.querySelector('.breadcrumbs').innerHTML = '';
+  document.querySelector('.products').innerHTML = '';
+  document.querySelector('.map').style.display = 'block';
 });
-
-
 
 
 
