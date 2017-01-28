@@ -1,33 +1,33 @@
 
 class ProductsHandler {
 
-  getProducts(page, category, id) {
-    if (Products.items) return Products.displayProducts(Products.pagePaginate(Products.items, page, category, id));
+  getProducts (page, category, id) {
+    if (Products.items) return Products.displayProducts_(Products.pagePaginate_(Products.items, page, category, id));
 
     fetch('./products.json')
       .then(function(response) {
-        if (response.headers.get('Content-Type') == 'application/json' && response.status == 200) {
+        if (response.headers.get('Content-Type') === 'application/json' && response.status === 200) {
           return response.json();
         }
       })
       .then((products) => this.checkProducts_(products))
-      .then((items) => this.pagePaginate (items, page, category, id))
-      .then((filterItems) => this.displayProducts (filterItems))
-      .catch(this.displayNothing);
+      .then((items) => this.pagePaginate_ (items, page, category, id))
+      .then((filterItems) => this.displayProducts_ (filterItems))
+      .catch(this.displayNothing_);
   }
 
   checkProducts_ (products) {
     const items = products.filter(product => Object.keys(product).length > 0 && this.timeLeft_(product.timeEnd));
-    if (items.length == 0) return this.displayNothing();
+    if (items.length == 0) return this.displayNothing_();
     return this.items = items;
   }
 
-  pagePaginate (items, page, category, id) {
+  pagePaginate_ (items, page, category, id) {
     this.filterItems = items.slice();
     const product = this.filter_('id', id);
     this.filter_('category', category);
     if (this.filterItems.length == 0 && Boolean(product) == true) return product;
-    if (this.filterItems.length == 0) return;
+    if (this.filterItems.length == 0) return [];
 
     const pagesQuantity = Math.ceil(this.filterItems.length / ItemsPagination.itemsPerPage);
     ItemsPagination.init(pagesQuantity, page, category);
@@ -39,7 +39,7 @@ class ProductsHandler {
   filter_ (key, value) {
     if (value) {
       this.filterItems = this.filterItems.filter(filterItem => filterItem[key] == value);
-      if (this.filterItems.length == 0) this.displayNothing(value);
+      if (this.filterItems.length == 0) this.displayNothing_(value);
       if (key == 'id' && this.filterItems.length == 1) {
         const product = this.filterItems[0];
         this.filterItems = [];
@@ -48,9 +48,9 @@ class ProductsHandler {
     }
   }
 
-  displayProducts (products) {
-    if (!(products instanceof Array)) return this.displayProduct (products);
-    if (products.length == 0) return;
+  displayProducts_ (products) {
+    if (!(products instanceof Array) ) return this.displayProduct_ (products);
+    if (products.length === 0) return;
 
     document.querySelector('.map').style.display = 'none';
     document.querySelector('.products').innerHTML = products.map(product => this.template_`       
@@ -78,7 +78,7 @@ class ProductsHandler {
     ).join('');
   }
 
-  displayProduct (product) {
+  displayProduct_ (product) {
     document.querySelector('.pagination').innerHTML = '';
     document.querySelector('.map').style.display = 'none';
     ItemsPagination.productBreadcrumb(product);
@@ -126,7 +126,7 @@ class ProductsHandler {
     return ( days + left.getUTCHours() + "h " + left.getUTCMinutes() + "m");
   }
 
-  displayNothing (category) {
+  displayNothing_ (category) {
     const information = document.createElement('h2');
     if (category) {
       information.innerText = 'There are no products in category ' + category + '.';

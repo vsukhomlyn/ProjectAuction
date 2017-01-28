@@ -2,14 +2,16 @@
 @import "../mixins";
 
 .footer {
-  padding: $footer-min-padding $footer-padding-sides;
-
   color: $footer-color;
   background-color: $footer-bg-color;
-  max-width: 1280px;
-  margin: 0 auto;
 }
 
+.footer__content {
+  box-sizing: border-box;
+  max-width: $layout-header-footer-max-width;
+  margin: 0 auto;
+  padding: $footer-min-padding $footer-padding-sides;
+}
 
 .footer__top-section:after,
 .footer__middle-section:after,

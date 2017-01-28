@@ -154,9 +154,7 @@
 
   // Drawer button.
   .layout__drawer-button {
-    display: block;
-
-    position: absolute;
+    //position: absolute;
     height: $layout-drawer-button-desktop-size;
     width: $layout-drawer-button-desktop-size;
     border: 0;
@@ -170,14 +168,14 @@
     line-height: $layout-mobile-header-height;
     font-family: Helvetica, Arial, sans-serif;
     margin: ($layout-mobile-header-height - $layout-drawer-button-desktop-size) 12px;
-    top: 0;
-    left: 0;
+    //top: 0;
+    //left: 0;
     color: $layout-header-text-color;
 
     z-index: 4;
 
     .layout__header & {
-      position: absolute;
+      //position: absolute;
       color: $layout-header-text-color;
       background-color: inherit;
 
@@ -212,8 +210,6 @@
 
     position: relative;
     width: 100%;
-    max-width: 1280px;
-    margin: 0 auto;
     padding: 0;
     border: none;
     min-height: $layout-desktop-header-height;
@@ -244,25 +240,25 @@
       }
     }
 
-    & > .layout-icon {
-      position: absolute;
-      left: $layout-header-desktop-indent;
-      top: ($layout-desktop-header-height - $layout-header-icon-size) / 2;
-      height: $layout-header-icon-size;
-      width: $layout-header-icon-size;
-      overflow: hidden;
-      z-index: 3;
-      display: block;
+    //& > .layout-icon {
+    //  position: absolute;
+    //  left: $layout-header-desktop-indent;
+    //  top: ($layout-desktop-header-height - $layout-header-icon-size) / 2;
+    //  height: $layout-header-icon-size;
+    //  width: $layout-header-icon-size;
+    //  overflow: hidden;
+    //  z-index: 3;
+    //  display: block;
+    //
+    //  @media screen and (max-width: $layout-screen-size-threshold) {
+    //    left: $layout-header-mobile-indent;
+    //    top: ($layout-mobile-header-height - $layout-header-icon-size) / 2;
+    //  }
+    //}
 
-      @media screen and (max-width: $layout-screen-size-threshold) {
-        left: $layout-header-mobile-indent;
-        top: ($layout-mobile-header-height - $layout-header-icon-size) / 2;
-      }
-    }
-
-    .layout.has-drawer & > .layout-icon {
-      display: none;
-    }
+    //.layout.has-drawer & > .layout-icon {
+    //  display: none;
+    //}
 
     &.is-compact {
       max-height: $layout-desktop-header-height;
@@ -325,27 +321,29 @@
       box-sizing: border-box;
       align-self: stretch;
       align-items: center;
+      width: 100%;
+      max-width: $layout-header-footer-max-width;
       height: $layout-header-desktop-row-height;
-      margin: 0;
-      padding: 0 $layout-header-desktop-indent 0 $layout-header-desktop-baseline;
+      margin: 0 auto;
+      padding: 0 $layout-header-desktop-indent;
 
-      .layout--no-drawer-button & {
-        padding-left: $layout-header-desktop-indent;
-      }
+      //.layout--no-drawer-button & {
+      //  padding-left: $layout-header-desktop-indent;
+      //}
 
-      @media screen and (min-width: $layout-screen-size-threshold + 1px) {
-        .layout--no-desktop-drawer-button & {
-          padding-left: $layout-header-desktop-indent;
-        }
-      }
+      //@media screen and (min-width: $layout-screen-size-threshold + 1px) {
+      //  .layout--no-desktop-drawer-button & {
+      //    padding-left: $layout-header-desktop-indent;
+      //  }
+      //}
 
       @media screen and (max-width: $layout-screen-size-threshold) {
         height: $layout-header-mobile-row-height;
-        padding: 0 $layout-header-mobile-indent 0 $layout-header-mobile-baseline;
+        padding: 0 $layout-header-mobile-indent;
 
-        .layout--no-drawer-button & {
-          padding-left: $layout-header-mobile-indent;
-        }
+        //.layout--no-drawer-button & {
+        //  padding-left: $layout-header-mobile-indent;
+        //}
       }
 
       & > * {
@@ -392,7 +390,7 @@
 
         @media screen and (max-width: $layout-screen-size-threshold) {
           line-height: $layout-header-mobile-row-height;
-          padding: 0 $layout-header-mobile-indent;
+          padding: 0 16px;
         }
       }
     }

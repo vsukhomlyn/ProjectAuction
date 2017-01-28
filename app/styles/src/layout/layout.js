@@ -84,6 +84,7 @@
     HEADER_SEAMED: 'layout__header--seamed',
     HEADER_WATERFALL: 'layout__header--waterfall',
     HEADER_SCROLL: 'layout__header--scroll',
+    HEADER_ROW: 'layout__header-row',
 
     FIXED_HEADER: 'layout--fixed-header',
     OBFUSCATOR: 'layout__obfuscator',
@@ -397,7 +398,8 @@
         // If we have a fixed header, add the button to the header rather than
         // the layout.
         if (this.element_.classList.contains(this.CssClasses_.FIXED_HEADER)) {
-          this.header_.insertBefore(drawerButton, this.header_.firstChild);
+          var headerRow = this.header_.querySelector('.' +this.CssClasses_.HEADER_ROW);
+          headerRow.insertBefore(drawerButton, headerRow.firstChild);
         } else {
           this.element_.insertBefore(drawerButton, this.content_);
         }

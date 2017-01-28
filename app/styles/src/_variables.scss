@@ -340,6 +340,7 @@ $list-three-line-height: 88px !default;
 
 /* LAYOUT */
 
+$layout-header-footer-max-width: 1280px;
 $layout-drawer-narrow: 240px !default;
 $layout-drawer-wide: 456px !default;
 $layout-drawer-width: $layout-drawer-narrow !default;
@@ -357,8 +358,8 @@ $layout-desktop-header-height: $layout-header-desktop-row-height;
 
 $layout-header-desktop-baseline: 80px !default;
 $layout-header-mobile-baseline: 55px !default;
-$layout-header-mobile-indent: 16px !default;
-$layout-header-desktop-indent: 40px !default;
+$layout-header-mobile-indent: 0 !default;
+$layout-header-desktop-indent: 16px !default;
 
 $layout-tab-font-size: 14px !default;
 $layout-tab-bar-height: 48px !default;

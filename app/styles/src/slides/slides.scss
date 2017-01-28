@@ -9,6 +9,8 @@
   .slides {
     position: relative;
     height: $slides-height;
+    max-width: $layout-header-footer-max-width;
+    margin: 0 auto;
   }
 
   .slides__img {
@@ -18,7 +20,7 @@
     opacity: 0;
     z-index: 1;
     transition: opacity 1s;
-    background: no-repeat 50% 50% / contain;
+    background: no-repeat 50% 50% / cover;
 
     &:nth-of-type(1) {
       background-image: url($image_path + "/slides/1.jpg");

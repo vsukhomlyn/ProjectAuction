@@ -45,6 +45,7 @@ html, body {
     & .product--detail {
       flex-direction: row;
       width: 100%;
+      max-width: $layout-header-footer-max-width;
 
       & .mdl-card__detail {
         width: 100%;
@@ -54,8 +55,6 @@ html, body {
       }
     }
   }
-
-
 }
 
 .product__timeLeft {
@@ -98,6 +97,8 @@ html, body {
 
 .breadcrumbs {
   padding: 2% 4% 0;
+  max-width: $layout-header-footer-max-width;
+  margin: 0 auto;
 }
 
 .map {

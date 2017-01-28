@@ -103,11 +103,15 @@
       previous.addEventListener('click', () => goToSlide(currentSlide - 1));
       next.addEventListener('click', () => goToSlide(currentSlide + 1));
 
-      this.element_.addEventListener('click', (event) => {
+      this.element_.addEventListener('mouseover', () => {
         if (slideInterval) {
           clearInterval(slideInterval);
           slideInterval = undefined;
-        } else if (event.target.classList.contains(this.CssClasses_.SLIDES)) {
+        }
+      });
+
+      this.element_.addEventListener('mouseout', (event) => {
+        if (!slideInterval && event.target.classList.contains(this.CssClasses_.SLIDES)) {
           slideIntervalSetting();
         }
       });
