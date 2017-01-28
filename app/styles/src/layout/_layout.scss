@@ -114,7 +114,7 @@
 
       @media screen and (max-width: $layout-screen-size-threshold) {
         line-height: $layout-mobile-header-height;
-        padding-left: $layout-header-mobile-indent;
+        //padding-left: $layout-header-mobile-indent;
       }
     }
 
@@ -129,9 +129,9 @@
       padding: 16px $layout-header-desktop-indent;
       margin: 0;
 
-        @media screen and (max-width: $layout-screen-size-threshold) {
-          padding: 16px $layout-header-mobile-indent;
-        }
+        //@media screen and (max-width: $layout-screen-size-threshold) {
+        //  padding: 16px $layout-header-mobile-indent;
+        //}
 
         &:hover {
           background-color: $layout-nav-color;

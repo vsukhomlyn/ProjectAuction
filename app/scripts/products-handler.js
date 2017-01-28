@@ -127,7 +127,7 @@ class ProductsHandler {
   }
 
   displayNothing_ (category) {
-    const information = document.createElement('h2');
+    const information = document.createElement('h4');
     if (category) {
       information.innerText = 'There are no products in category ' + category + '.';
     } else {
