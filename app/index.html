@@ -91,26 +91,10 @@
         </nav>
       </div>
       <main class="layout__content">
-        <section class="slides js-slides">
-          <button class="slides__prev mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect">&#10094;</button>
-          <button class="slides__next mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect">&#10095;</button>
-          <!--slides will be here on desktop screen size-->
-        </section>
 
-        <section class="breadcrumbs">
-        </section>
-
-        <section class="map">
-          <script type="text/javascript" charset="utf-8" async src="https://api-maps.yandex.ru/services/constructor/1.0/js/?sid=hoR8jnFG8RTQd0O4dQfNtcDs8tKG7h95&amp;width=100%25&amp;height=400&amp;lang=ru_RU&amp;sourceType=constructor&amp;scroll=true"></script>
-        </section>
-
-        <section class="products">
-          <!--products will be here -->
-        </section>
-
-        <section class="pagination">
-          <!--pagination will be here -->
-        </section>
+        <div class="content">
+          <!--main content will be here-->
+        </div>
 
         <footer class="footer">
           <div class="footer__content">
@@ -171,10 +155,11 @@
 
     <script src="//cdnjs.cloudflare.com/ajax/libs/fetch/2.0.2/fetch.min.js"></script>
     <!-- build:js scripts/main.min.js -->
+    <script src="./styles/src/mdlComponentHandler.js"></script>
     <script src="./scripts/grapnel.js"></script>
     <script src="./scripts/pagination.js"></script>
+    <script src="./scripts/templates.js"></script>
     <script src="./scripts/products-handler.js"></script>
-    <script src="./styles/src/mdlComponentHandler.js"></script>
     <script src="./styles/src/button/button.js"></script>
     <script src="./styles/src/menu/menu.js"></script>
     <script src="./styles/src/slides/slides.js"></script>

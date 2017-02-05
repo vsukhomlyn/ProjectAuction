@@ -13,7 +13,7 @@ class ProductsHandler {
       .then((products) => this.checkProducts_(products))
       .then((items) => this.pagePaginate_ (items, page, category, id))
       .then((filterItems) => this.displayProducts_ (filterItems))
-      .catch(this.displayNothing_);
+      .catch(console.log);
   }
 
   checkProducts_ (products) {
@@ -52,7 +52,6 @@ class ProductsHandler {
     if (!(products instanceof Array) ) return this.displayProduct_ (products);
     if (products.length === 0) return;
 
-    document.querySelector('.map').style.display = 'none';
     document.querySelector('.products').innerHTML = products.map(product => this.template_`       
         <div class="product mdl-card mdl-shadow--2dp">
           <div class="mdl-card__media">
@@ -80,7 +79,6 @@ class ProductsHandler {
 
   displayProduct_ (product) {
     document.querySelector('.pagination').innerHTML = '';
-    document.querySelector('.map').style.display = 'none';
     ItemsPagination.productBreadcrumb(product);
 
     document.querySelector('.products').innerHTML = this.template_`       
@@ -142,15 +140,22 @@ class ProductsHandler {
 
 }
 
-const ItemsPagination = new Pagination (document.querySelector('.pagination'), {
+const Products = new ProductsHandler();
+const Router = new Grapnel();
+const Templates = new TemplatesHandler();
+const ItemsPagination = new Pagination ('.pagination', {
   page: 1,  // selected page
   step: 2,   // pages before and after current
   itemsPerPage: 8 // items per page
 });
-const Products = new ProductsHandler();
-const Router = new Grapnel();
 
-Router.get('', () => Products.getProducts());
+Router.get('', () => {
+  Templates.clean();
+  Templates.slides();
+  Templates.products();
+  Products.getProducts();
+});
+
 Router.get('/:page', (req) => Products.getProducts(req.params.page));
 Router.get('/:category/:page', (req) => {
   if (req.params.page.substr(0,4) == 'page') Products.getProducts(req.params.page, req.params.category)
@@ -158,10 +163,8 @@ Router.get('/:category/:page', (req) => {
 Router.get('/:category/id:id', (req) => Products.getProducts(undefined, undefined, req.params.id));
 
 Router.get('map', () => {
-  document.querySelector('.pagination').innerHTML = '';
-  document.querySelector('.breadcrumbs').innerHTML = '';
-  document.querySelector('.products').innerHTML = '';
-  document.querySelector('.map').style.display = 'block';
+  Templates.clean();
+  Templates.map();
 });
 
 

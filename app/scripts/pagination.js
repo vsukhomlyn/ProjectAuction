@@ -1,8 +1,8 @@
 class Pagination {
-  constructor(element, data = {}) {
+  constructor(elementSelector, data = {}) {
     this.code = '';
     this.category = '';
-    this.element = element;
+    this.elementSelector = elementSelector;
     this.page = data.page || 1;
     this.step = data.step || 2;
     this.itemsPerPage = data.itemsPerPage || 10;
@@ -12,6 +12,7 @@ class Pagination {
     this.pagesQuantity = pagesQuantity;
     if (page) this.page = Number(page.substr(4));
     if (category) this.category = '/' + category;
+    this.element = document.querySelector(this.elementSelector);
     this.element.addEventListener('click', this.click.bind(this));
     this.construct();
   }

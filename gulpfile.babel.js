@@ -107,10 +107,11 @@ gulp.task('scripts', () =>
       // Note: Since we are not using useref in the scripts build pipeline,
       //       you need to explicitly list your scripts here in the right order
       //       to be correctly concatenated
+      './app/styles/src/mdlComponentHandler.js',
       './app/scripts/grapnel.js',
       './app/scripts/pagination.js',
+      './app/scripts/templates.js',
       './app/scripts/products-handler.js',
-      './app/styles/src/mdlComponentHandler.js',
       './app/styles/src/button/button.js',
       './app/styles/src/menu/menu.js',
       './app/styles/src/slides/slides.js',
