@@ -40,5 +40,7 @@ class TemplatesHandler {
     document.querySelector('.content').innerHTML = '';
   }
 
-
+  scrollTop() {
+    document.querySelector('.content').scrollTop = 0;
+  }
 }

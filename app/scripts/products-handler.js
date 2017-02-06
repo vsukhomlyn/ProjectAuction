@@ -32,7 +32,7 @@ class ProductsHandler {
     const pagesQuantity = Math.ceil(this.filterItems.length / ItemsPagination.itemsPerPage);
     ItemsPagination.init(pagesQuantity, page, category);
     let start = 0;
-    if (page) start = (Number(page.substr(4)) - 1) * ItemsPagination.itemsPerPage;
+    if (page) start = (Number(page) - 1) * ItemsPagination.itemsPerPage;
     return this.filterItems.slice(start, start + ItemsPagination.itemsPerPage);
   }
 
@@ -149,21 +149,32 @@ const ItemsPagination = new Pagination ('.pagination', {
   itemsPerPage: 8 // items per page
 });
 
-Router.get('', () => {
+Router.get('*', () => {
   Templates.clean();
+  Templates.scrollTop();
+});
+
+Router.get('', () => {
   Templates.slides();
   Templates.products();
   Products.getProducts();
 });
 
-Router.get('/:page', (req) => Products.getProducts(req.params.page));
-Router.get('/:category/:page', (req) => {
-  if (req.params.page.substr(0,4) == 'page') Products.getProducts(req.params.page, req.params.category)
+Router.get('/page:pageNumber', (req) => {
+  Templates.products();
+  Products.getProducts(req.params.pageNumber)
 });
-Router.get('/:category/id:id', (req) => Products.getProducts(undefined, undefined, req.params.id));
+Router.get('/:category/page:pageNumber', (req) => {
+  Templates.products();
+  Products.getProducts(req.params.pageNumber, req.params.category)
+});
+
+Router.get('/:category/id:id', (req) => {
+  Templates.products();
+  Products.getProducts(undefined, undefined, req.params.id)
+});
 
 Router.get('map', () => {
-  Templates.clean();
   Templates.map();
 });
 

@@ -10,8 +10,8 @@ class Pagination {
 
   init (pagesQuantity, page, category) {
     this.pagesQuantity = pagesQuantity;
-    if (page) this.page = Number(page.substr(4));
-    if (category) this.category = '/' + category;
+    this.page = page ?  Number(page) : 1;
+    this.category = category ?  '/' + category : '';
     this.element = document.querySelector(this.elementSelector);
     this.element.addEventListener('click', this.click.bind(this));
     this.construct();
@@ -66,7 +66,6 @@ class Pagination {
       link.setAttribute('href','#' + this.category + '/page' + (index + 1));
       if (Number(link.innerHTML) === this.page) link.classList.add('pagination__item--active');
     });
-    this.category = '';
   }
 
   // change page
