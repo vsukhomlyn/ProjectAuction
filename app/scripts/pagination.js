@@ -1,4 +1,4 @@
-class Pagination {
+class PaginationHandler {
   constructor(elementSelector, data = {}) {
     this.code = '';
     this.category = '';
@@ -8,8 +8,8 @@ class Pagination {
     this.itemsPerPage = data.itemsPerPage || 10;
   }
 
-  init (pagesQuantity, page, category) {
-    this.pagesQuantity = pagesQuantity;
+  init (items, page, category) {
+    this.pagesQuantity = Math.ceil(items.length / this.itemsPerPage);
     this.page = page ?  Number(page) : 1;
     this.category = category ?  '/' + category : '';
     this.element = document.querySelector(this.elementSelector);
@@ -81,7 +81,7 @@ class Pagination {
       this.category.substr(1) + '/page1">' + this.category.substr(1) + '</a>';
   }
 
-  productBreadcrumb (product) {
+  productBreadcrumb ([product]) {
     document.querySelector('.breadcrumbs').innerHTML = '<a href="#">main</a> / <a href="#/' +
       product.category + '/page1">' + product.category + '</a> / <a href="#/' +
       product.category + '/id' + product.id + '">' + product.name + '</a>';
