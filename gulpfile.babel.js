@@ -118,6 +118,8 @@ gulp.task('scripts', () =>
       './app/styles/src/slides/slides.js',
       './app/styles/src/layout/layout.js',
       './app/styles/src/ripple/ripple.js',
+      './app/styles/src/textfield/textfield.js',
+      './app/styles/src/spinner/spinner.js',
       './app/scripts/main.js'
       // Other scripts
     ])

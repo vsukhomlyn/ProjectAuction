@@ -193,10 +193,13 @@
       line-height: 54px;
 
       .layout--no-desktop-drawer-button &,
-      .layout--fixed-drawer > &,
-      .layout--no-drawer-button & {
+      .layout--fixed-drawer > & {
         display: none;
       }
+    }
+
+    .layout--no-drawer-button & {
+      display: none;
     }
   }
 
@@ -240,25 +243,25 @@
       }
     }
 
-    //& > .layout-icon {
-    //  position: absolute;
-    //  left: $layout-header-desktop-indent;
-    //  top: ($layout-desktop-header-height - $layout-header-icon-size) / 2;
-    //  height: $layout-header-icon-size;
-    //  width: $layout-header-icon-size;
-    //  overflow: hidden;
-    //  z-index: 3;
-    //  display: block;
-    //
-    //  @media screen and (max-width: $layout-screen-size-threshold) {
-    //    left: $layout-header-mobile-indent;
-    //    top: ($layout-mobile-header-height - $layout-header-icon-size) / 2;
-    //  }
-    //}
+    & > .layout-icon {
+      position: absolute;
+      left: $layout-header-desktop-indent;
+      top: ($layout-desktop-header-height - $layout-header-icon-size) / 2;
+      height: $layout-header-icon-size;
+      width: $layout-header-icon-size;
+      overflow: hidden;
+      z-index: 3;
+      display: block;
 
-    //.layout.has-drawer & > .layout-icon {
-    //  display: none;
-    //}
+      @media screen and (max-width: $layout-screen-size-threshold) {
+        left: $layout-header-mobile-indent;
+        top: ($layout-mobile-header-height - $layout-header-icon-size) / 2;
+      }
+    }
+
+    .layout.has-drawer & > .layout-icon {
+      display: none;
+    }
 
     &.is-compact {
       max-height: $layout-desktop-header-height;
@@ -327,19 +330,19 @@
       margin: 0 auto;
       padding: 0 $layout-header-desktop-indent;
 
-      //.layout--no-drawer-button & {
-      //  padding-left: $layout-header-desktop-indent;
-      //}
+      .layout--no-drawer-button & {
+        padding-left: 40px;
+      }
 
-      //@media screen and (min-width: $layout-screen-size-threshold + 1px) {
-      //  .layout--no-desktop-drawer-button & {
-      //    padding-left: $layout-header-desktop-indent;
-      //  }
-      //}
+      @media screen and (min-width: $layout-screen-size-threshold + 1px) {
+        .layout--no-desktop-drawer-button & {
+          padding-left: 40px;
+        }
+      }
 
       @media screen and (max-width: $layout-screen-size-threshold) {
         height: $layout-header-mobile-row-height;
-        padding: 0 $layout-header-mobile-indent;
+        padding-left: $layout-header-mobile-indent;
 
         //.layout--no-drawer-button & {
         //  padding-left: $layout-header-mobile-indent;

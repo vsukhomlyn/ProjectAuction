@@ -245,25 +245,20 @@
   *
   * @public
   */
-  MaterialLayout.prototype.toggleDrawer = function(evt) {
-    if (evt.target.classList.contains(this.CssClasses_.NAV_LINK)) {
-      var drawerLinks = Array.prototype.slice.call(this.drawer_.querySelectorAll('.' + this.CssClasses_.NAV_LINK));
-      drawerLinks.forEach((function (drawerLink) {
-        drawerLink.classList.remove(this.CssClasses_.NAV_LINK + '--current');
-      }).bind(this));
-      evt.target.classList.add(this.CssClasses_.NAV_LINK + '--current');
-    }
-    var drawerButton = this.element_.querySelector('.' + this.CssClasses_.DRAWER_BTN);
-    this.drawer_.classList.toggle(this.CssClasses_.IS_DRAWER_OPEN);
-    this.obfuscator_.classList.toggle(this.CssClasses_.IS_DRAWER_OPEN);
+  MaterialLayout.prototype.toggleDrawer = function() {
+    if (this.element_.classList.contains(this.CssClasses_.IS_SMALL_SCREEN)) {
+      var drawerButton = document.querySelector('.' + this.CssClasses_.DRAWER_BTN);
+      this.drawer_.classList.toggle(this.CssClasses_.IS_DRAWER_OPEN);
+      this.obfuscator_.classList.toggle(this.CssClasses_.IS_DRAWER_OPEN);
 
-    // Set accessibility properties.
-    if (this.drawer_.classList.contains(this.CssClasses_.IS_DRAWER_OPEN)) {
-      this.drawer_.setAttribute('aria-hidden', 'false');
-      drawerButton.setAttribute('aria-expanded', 'true');
-    } else {
-      this.drawer_.setAttribute('aria-hidden', 'true');
-      drawerButton.setAttribute('aria-expanded', 'false');
+      // Set accessibility properties.
+      if (this.drawer_.classList.contains(this.CssClasses_.IS_DRAWER_OPEN)) {
+        this.drawer_.setAttribute('aria-hidden', 'false');
+        drawerButton.setAttribute('aria-expanded', 'true');
+      } else {
+        this.drawer_.setAttribute('aria-hidden', 'true');
+        drawerButton.setAttribute('aria-expanded', 'false');
+      }
     }
   };
   MaterialLayout.prototype['toggleDrawer'] =

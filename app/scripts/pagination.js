@@ -8,12 +8,14 @@ class PaginationHandler {
     this.itemsPerPage = data.itemsPerPage || 10;
   }
 
-  init (items, page, category) {
+  init (items, page, filter = [], category) {
     this.pagesQuantity = Math.ceil(items.length / this.itemsPerPage);
     this.page = page ?  Number(page) : 1;
+    this.filter = filter.length > 0 ?  '?' + filter.join('?') : '';
     this.category = category ?  '/' + category : '';
     this.element = document.querySelector(this.elementSelector);
     this.element.addEventListener('click', this.click.bind(this));
+    this.selectDrawerLink();
     this.construct();
   }
 
@@ -63,7 +65,7 @@ class PaginationHandler {
     const links = Array.from(this.element.getElementsByTagName('a'));
     links.forEach((link, index) => {
       link.classList.add('pagination__item');
-      link.setAttribute('href','#' + this.category + '/page' + (index + 1));
+      link.setAttribute('href','#' + this.category + '/page' + (index + 1) + this.filter);
       if (Number(link.innerHTML) === this.page) link.classList.add('pagination__item--active');
     });
   }
@@ -85,5 +87,14 @@ class PaginationHandler {
     document.querySelector('.breadcrumbs').innerHTML = '<a href="#">main</a> / <a href="#/' +
       product.category + '/page1">' + product.category + '</a> / <a href="#/' +
       product.category + '/id' + product.id + '">' + product.name + '</a>';
+  }
+
+  selectDrawerLink (category = this.category.split('/')[1]) {
+    const  drawer = document.querySelector('.layout__drawer ');
+    const drawerLinks = Array.from(drawer.querySelectorAll('.navigation__link'));
+    drawerLinks.forEach((drawerLink) => {
+      drawerLink.classList.remove('navigation__link--current');
+      if (drawerLink.href.split('/')[4] === category) drawerLink.classList.add('navigation__link--current');
+    });
   }
 }
