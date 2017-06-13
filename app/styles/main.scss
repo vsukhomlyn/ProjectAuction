@@ -6,6 +6,15 @@ html, body {
   padding: 0;
 }
 
+.mdl-button--orange {
+  background-color: unquote("rgb(#{$palette-orange-700})");
+  color: $button-secondary-color-alt;
+
+  &:hover {
+    background-color: unquote("rgb(#{$palette-orange-300})");
+  }
+}
+
 .layout__logo-box {
   text-decoration: none;
   color: $layout-header-text-color;
@@ -47,15 +56,6 @@ html, body {
     @media screen and (min-width: $grid-desktop-breakpoint) {
       margin: 5px;
       width: 290px;
-    }
-  }
-
-  & .mdl-button {
-    background-color: unquote("rgb(#{$palette-orange-700})");
-    color: $button-secondary-color-alt;
-
-    &:hover {
-      background-color: unquote("rgb(#{$palette-orange-300})");
     }
   }
 
@@ -231,4 +231,39 @@ html, body {
 
 .hidden {
   display: none;
+}
+
+.lot {
+  display: flex;
+  flex-direction: column;
+  padding: $layout-header-desktop-indent $layout-header-desktop-indent 0;
+}
+
+.lot__image-label {
+  display: inline-block;
+  min-width: $button-min-width;
+  padding: 0 $button-padding;
+  line-height: $button-height;
+  height: $button-height;
+  vertical-align: middle;
+  font-size: 14px;
+  font-weight: 500;
+  text-transform: uppercase;
+}
+
+.lot__image-input {
+  padding: 0 $button-padding;
+  background-color: transparent;
+}
+
+.lot__submit {
+  width: 300px;
+  max-width: 100%;
+  margin: $input-text-vertical-spacing 0;
+}
+
+.is-invalid>.lot__duration-title,
+.is-invalid>.lot__category-title,
+.is-invalid>.lot__image-label {
+  color: $input-text-error-color;
 }

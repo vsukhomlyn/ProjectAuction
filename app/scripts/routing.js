@@ -59,11 +59,17 @@ Router.get('/:category/id:id', (req) => {
   Templates.scrollTop();
   Templates.products();
   Products.getProducts().then (products => {
-    const product = Products.select(products, 'id', req.params.id);
+    const product = Products.select(products, '_id', req.params.id);
     Pagination.productBreadcrumb(product);
     Pagination.selectDrawerLink(product[0].category);
     Products.displayProducts(product, Templates.itemPage);
   })
+});
+
+Router.get('new-lot', () => {
+  Templates.clean('');
+  Templates.scrollTop();
+  Templates.newLot(Products.newLotListeners, Router);
 });
 
 Router.get('map', () => {

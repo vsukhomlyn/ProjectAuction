@@ -86,7 +86,7 @@ class PaginationHandler {
   productBreadcrumb ([product]) {
     document.querySelector('.breadcrumbs').innerHTML = '<a href="#">main</a> / <a href="#/' +
       product.category + '/page1">' + product.category + '</a> / <a href="#/' +
-      product.category + '/id' + product.id + '">' + product.name + '</a>';
+      product.category + '/id' + product._id + '">' + product.name + '</a>';
   }
 
   selectDrawerLink (category = this.category.split('/')[1]) {

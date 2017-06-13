@@ -51,10 +51,10 @@ class TemplatesHandler {
     return this.template_`       
         <div class="product mdl-card mdl-shadow--2dp">
           <div class="mdl-card__media">
-            <a href="#/${product.category}/id${product.id}"><img src="${product.img}" height="250px" alt="${product.description}"></a>
+            <a href="#/${product.category}/id${product._id}"><img src="${product.img}" height="250px" alt="${product.description}"></a>
           </div>
           <div class="mdl-card__title">
-            <a class="mdl-card__title-link" href="#/${product.category}/id${product.id}"">
+            <a class="mdl-card__title-link" href="#/${product.category}/id${product._id}"">
               <h2 class="mdl-card__title-text">${product.name}</h2>
             </a>
             <h2 class="mdl-card__title-text">$${product.price}</h2>
@@ -63,7 +63,7 @@ class TemplatesHandler {
             ${product.description}
           </div>
           <div class="mdl-card__actions mdl-card--border">
-            <a class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--orange" href="#/${product.category}/id${product.id}"">
+            <a class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--orange" href="#/${product.category}/id${product._id}"">
               Place bid
             </a>
             <div class="product__timeLeft">${timeLeft(product.timeEnd)} left</div>
@@ -86,14 +86,14 @@ class TemplatesHandler {
             <span class="item__date-small">Listed: ${timeListed(product.timeStart)} / </span>
             <span class="item__date-small">End: ${timeListed(product.timeEnd)}</span>
             <h4 class="item__price">$${product.price}</h4>
-            <div> [ bids: <span>${product.bids.length}</span> ]</div>
+            <div> [ bids: <span class="item__current-bid">${product.bids.length}</span> ]</div>
             <div class="item__bid mdl-textfield mdl-js-textfield">
               <input class="mdl-textfield__input" id = "item__bid-input" type="text" pattern="[0-9]*">
               <label class="mdl-textfield__label" for="item__bid-input">$</label>
             </div>
-            <a class="item__button mdl-button mdl-js-button mdl-button--orange" href="#${product.id}">
+            <button class="item__button mdl-button mdl-js-button mdl-button--orange">
               Place bid
-            </a>
+            </button>
             <div class="">
               ${product.description}
             </div>
@@ -187,6 +187,69 @@ class TemplatesHandler {
     products.appendChild(information);
   }
 
+  newLot(newLotListeners, Router) {
+    const wrapper = document.querySelector('.lot');
+    if (wrapper) {
+      wrapper.classList.remove('hidden');
+    } else {
+      const  wrapper = document.createElement('form');
+      wrapper.classList.add('lot');
+
+      wrapper.innerHTML = `
+        <div class="lot__name mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+          <input class="lot__name-input mdl-textfield__input" id = "" type="text">
+          <label class="mdl-textfield__label" for="">Lot name</label>
+        </div>
+        <div class="lot__price mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+          <input class="lot__price-input mdl-textfield__input" id = "" type="text" pattern="[0-9]*">
+          <label class="mdl-textfield__label" for="">Initial lot price, $</label>
+        </div>
+        <div class="lot__duration">
+          <a id="lot__duration-btn" class="mdl-button mdl-js-button">
+            <span class="lot__duration-title">Duration</span>
+            <span class="caret-dn"></span>
+          </a>
+          <div class="lot__duration-list mdl-menu mdl-js-menu mdl-js-ripple-effect" for="lot__duration-btn">
+            <a class="mdl-menu__item">1 day</a>
+            <a class="mdl-menu__item">2 days</a>
+            <a class="mdl-menu__item">3 days</a>
+            <a class="mdl-menu__item">4 days</a>
+            <a class="mdl-menu__item">5 days</a>
+            <a class="mdl-menu__item">6 days</a>
+            <a class="mdl-menu__item">7 days</a>
+          </div>
+        </div>
+        <div class="lot__category">
+          <a id="lot__category-btn" class="mdl-button mdl-js-button">
+            <span class="lot__category-title">Category</span>
+            <span class="caret-dn"></span>
+          </a>
+          <div class="lot__category-list mdl-menu mdl-js-menu mdl-js-ripple-effect" for="lot__category-btn">
+            <a class="mdl-menu__item">Fruits</a>
+            <a class="mdl-menu__item">Vegetables</a>
+            <a class="mdl-menu__item">Mushrooms</a>
+            <a class="mdl-menu__item">Other</a>
+          </div>
+        </div>  
+        <div class="lot__image">
+          <label class="lot__image-label" for="lot__image-input">Image</label>
+          <input class="lot__image-input" id="lot__image-input" type="file" accept="image/*">
+        </div>
+        <div class="lot__description mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+          <textarea class="lot__description-input mdl-textfield__input" id = "" type="text" rows="5"></textarea>
+          <label class="mdl-textfield__label" for="">Lot description</label>
+        </div>
+        <button class="lot__submit mdl-button mdl-js-button mdl-button--orange">List new lot</button>
+      `;
+
+      document.querySelector('.content').appendChild(wrapper);
+      const inputs = Array.from(wrapper.querySelectorAll('.mdl-textfield,.mdl-menu,.mdl-button'));
+      inputs.forEach((input) => componentHandler.upgradeElement(input));
+
+      newLotListeners(Router);
+    }
+  }
+
   map() {
     const wrapper = document.querySelector('.map');
     if (wrapper) {
@@ -200,15 +263,20 @@ class TemplatesHandler {
       document.querySelector('.content').appendChild(wrapper);
       componentHandler.upgradeElement(spinner);
 
-      const map = document.createElement('script');
-      map.src = "https://api-maps.yandex.ru/services/constructor/1.0/js/?sid=hoR8jnFG8RTQd0O4dQfNtcDs8tKG7h95&amp;width=100%25&amp;height=400&amp;lang=en_US&amp;sourceType=constructor&amp;scroll=true";
-      const container = document.createElement('div');
-      container.classList.add('map__container--hidden');
-      container.appendChild(map);
-      wrapper.appendChild(container);
-      map.addEventListener('load', () => {
+      const map = document.createElement('div');
+      map.classList.add('map__container--hidden');
+      map.innerHTML = `<iframe
+        width="100%"
+        height="400"
+        frameborder="0" style="border:0"
+        src="https://www.google.com/maps/embed/v1/place?key=AIzaSyAulJ782upLgK_Tvrip2rGgzi2BWtFu89o
+          &q=EPAM,Kyiv" allowfullscreen>
+      </iframe>`;
+      wrapper.appendChild(map);
+
+      map.firstElementChild.addEventListener('load', () => {
         spinner.remove();
-        container.classList.remove('map__container--hidden');
+        map.classList.remove('map__container--hidden');
       })
     }
   }

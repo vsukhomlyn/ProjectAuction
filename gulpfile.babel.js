@@ -33,6 +33,7 @@ import swPrecache from 'sw-precache';
 import gulpLoadPlugins from 'gulp-load-plugins';
 import {output as pagespeed} from 'psi';
 import pkg from './package.json';
+import nodemon from 'gulp-nodemon';
 
 const $ = gulpLoadPlugins();
 const reload = browserSync.reload;
@@ -165,8 +166,22 @@ gulp.task('html', () => {
 // Clean output directory
 gulp.task('clean', () => del(['.tmp', 'dist/*', '!dist/.git'], {dot: true}));
 
+// Start express server and watch for changes & reload
+gulp.task('nodemon', (cb) => {
+  let started = false;
+  return nodemon({
+    script: './server/server.js'
+  }).on('start', () => {
+    // to avoid nodemon being started multiple times
+    if (!started) {
+      cb();
+      started = true;
+    }
+  });
+});
+
 // Watch files for changes & reload
-gulp.task('serve', ['scripts', 'styles'], () => {
+gulp.task('serve', ['nodemon','scripts', 'styles'], () => {
   browserSync({
     notify: false,
     // Customize the Browsersync console logging prefix
@@ -177,7 +192,8 @@ gulp.task('serve', ['scripts', 'styles'], () => {
     // Note: this uses an unsigned certificate which on first access
     //       will present a certificate warning in the browser.
     // https: true,
-    server: ['.tmp', 'app'],
+    // server: ['.tmp', 'app'],
+    proxy: "http://localhost:3000",
     port: 3000
   });
 
